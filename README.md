@@ -1,9 +1,5 @@
 # Agent Motivation
 
-![Agent Skill](https://img.shields.io/badge/Agent%20Skill-motivation-7c3aed?style=for-the-badge)
-![Focus](https://img.shields.io/badge/Focus-familiarity%20drift-2563eb?style=for-the-badge)
-![Behavior](https://img.shields.io/badge/Behavior-evidence%20first-059669?style=for-the-badge)
-
 The internal motivation skill for agents that start avoiding unfamiliar work.
 
 AI Motivation keeps an agent on the user's real target when uncertainty, missing examples, or repeated failures make easier familiar work tempting.
