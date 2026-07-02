@@ -1,4 +1,4 @@
-# AI Motivation
+# Agent Motivation
 
 ![Agent Skill](https://img.shields.io/badge/Agent%20Skill-motivation-7c3aed?style=for-the-badge)
 ![Focus](https://img.shields.io/badge/Focus-familiarity%20drift-2563eb?style=for-the-badge)
@@ -56,13 +56,13 @@ Motivation: Validation passed with the targeted test. The diff only touches the 
 ## Install
 
 ```bash
-npx skills add erdemuk/ai-motivation
+npx skills add erdemuk/agent-motivation
 ```
 
 Explicit skill name:
 
 ```bash
-npx skills add erdemuk/ai-motivation --skill motivation
+npx skills add erdemuk/agent-motivation --skill motivation
 ```
 
 Manual layout:
