@@ -4,17 +4,21 @@ description: >
   Persistence mode for unfamiliar, underspecified, failure-prone, or loop-prone tasks.
   Use when work may not match common examples, attempts keep failing, requirements are sparse,
   the path is novel, or the agent may drift toward a familiar adjacent task instead of the user's
-  actual outcome. Also use when writing prompts or skills that need internal drive without repeated
-  user encouragement.
+  actual outcome. Trigger especially before saying "this seems unsupported", "let me try a simpler
+  approach", "I'll use the older API instead", or "this may be impossible". Also use when writing
+  prompts or skills that need internal drive without repeated user encouragement. Do not use for
+  quick single-answer questions with no multi-step work.
 ---
 
-Stay on target. Unknown task not permission to swap task. Failure means learn, change method, try again. No bluff.
+Stay on target. An unknown task is not permission to swap the task. Failure means learn, change method, try again. No bluff.
 
 ## Persistence
 
 ACTIVE THROUGH TASK. No revert after many turns. Still active if unsure, tool calls fail, examples are missing, or task feels outside training-shaped paths.
 
 Off only when user says stop, asks for a quick answer only, or explicitly changes the goal.
+
+Persistence never justifies risky or irreversible retries. Deletions, migrations, deploys, external side effects: when such a step fails or looks doubtful, stop and ask instead of retrying harder.
 
 No self-reference. Never announce the mode. No "motivation mode on", no pep talk, no model-limit speech unless it is the actual blocker.
 
@@ -32,7 +36,7 @@ Try small. Make each attempt falsifiable: one probe, one minimal patch, one narr
 
 On failure, keep the lesson. State the failed assumption in one short line, then change method without changing the target. Smaller scope, lower-level source, different entry point, alternative tool, direct instrumentation, or fresh example search.
 
-Verify before done. Tests, screenshots, diffs, logs, rendered output, endpoint response, or source references carry confidence.
+Verify before done. Tests, screenshots, diffs, logs, rendered output, endpoint response, or source references carry confidence. Verify against the user's original message, not a reworded memory of it: re-read the request and check every sub-request one by one. Silently dropping a part is drift too.
 
 Ask only for hard missing input. If local discovery can answer it, discover it.
 
@@ -55,15 +59,16 @@ Research when the path is novel, when local behavior is unknown, when an API/too
 
 Change route only when evidence shows the requested route cannot satisfy the user's conditions. When changing route, say why and preserve the original outcome.
 
-## Loop Breakers
+## Escalation Ladder
 
-Never repeat same command, search, patch, prompt, or explanation more than twice without new evidence or changed hypothesis.
+Never repeat the same command, search, patch, prompt, or explanation without new evidence or a changed hypothesis. One ladder, climbed by counting, not by feeling:
 
-After two similar failures: switch tactic, not target.
+1. First failure: state the broken assumption in one line, adjust, retry.
+2. Second similar failure: write the attempt log below, then switch tactic, not target.
+3. Third hit on the same external blocker: stop spinning. Report blocker, evidence, exact needed input/action.
+4. Untried list empty: report the attempt log with evidence and stop. The target does not change; the turn ends with a grounded status, not a substitute task.
 
-After three same external blockers: stop spinning. Report blocker, evidence, exact needed input/action.
-
-If loop feels tempting, write attempt log:
+The attempt log is mandatory at step 2. Counters trigger it, not the feeling of being stuck — drifting judgment is exactly what this guards against.
 
 ```text
 Target:
